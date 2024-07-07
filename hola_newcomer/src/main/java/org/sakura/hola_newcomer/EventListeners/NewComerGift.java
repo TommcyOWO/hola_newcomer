@@ -39,8 +39,9 @@ public class NewComerGift implements Listener {
             meta.setLore(lore);
             meta.setUnbreakable(true);
 
-            NamespacedKey key = new NamespacedKey(plugin, "newcomer_gift");
-            meta.getPersistentDataContainer().set(key, PersistentDataType.STRING, "newcomer_gift");
+            Global.key = new NamespacedKey(plugin, "newcomer_gift");
+            //NamespacedKey key = new NamespacedKey(plugin, "newcomer_gift");
+            meta.getPersistentDataContainer().set(Global.key, PersistentDataType.STRING, "newcomer_gift");
 
             org.bukkit.block.ShulkerBox shulkerBox = (org.bukkit.block.ShulkerBox) meta.getBlockState();
             Inventory inventory = shulkerBox.getInventory();
