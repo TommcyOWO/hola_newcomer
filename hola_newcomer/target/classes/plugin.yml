@@ -1,7 +1,7 @@
 name: hola_newcomer
 version: '1.0-SNAPSHOT'
 main: org.sakura.hola_newcomer.Hola_newcomer
-api-version: '1.21'
+api-version: '1.14'
 commands:
   hello:
     description: Say hello

@@ -16,6 +16,7 @@ import org.bukkit.inventory.meta.BlockStateMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.Plugin;
+import org.sakura.hola_newcomer.global.Global;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,20 +77,19 @@ public class NewComerGift implements Listener {
         if (event.getInventory().getType() == InventoryType.SHULKER_BOX) {
             Inventory inventory = event.getInventory();
             ItemStack item = event.getPlayer().getInventory().getItemInMainHand();
-
             if (item.getType() == Material.SHULKER_BOX && item.hasItemMeta()) {
                 BlockStateMeta meta = (BlockStateMeta) item.getItemMeta();
-                NamespacedKey key = new NamespacedKey(plugin, "newcomer_gift");
-
+                //NamespacedKey key = new NamespacedKey(plugin, "newcomer_gift");
                 assert meta != null;
-                if (meta.getPersistentDataContainer().has(key, PersistentDataType.STRING)) {
+                if (meta.getPersistentDataContainer().has(Global.key, PersistentDataType.STRING)) {
                     Player player = (Player) event.getPlayer();
                     for (ItemStack content : inventory.getContents()) {
                         if (content != null) {
                             player.getInventory().addItem(content);
                         }
                     }
-                    inventory.clear();
+                    player.getInventory().setItemInMainHand(new ItemStack(Material.AIR));
+                    //inventory.clear();
                     player.sendMessage("新手禮包已關閉，剩餘物品會放入你的背包。");
                 }
             }

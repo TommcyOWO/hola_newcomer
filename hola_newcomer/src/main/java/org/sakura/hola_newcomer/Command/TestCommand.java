@@ -11,6 +11,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BlockStateMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.Plugin;
+import org.sakura.hola_newcomer.global.Global;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,18 +29,17 @@ public class TestCommand implements CommandExecutor {
 
         if (sender instanceof Player) {
             Player player = (Player) sender;
-
             ItemStack giftBox = new ItemStack(Material.SHULKER_BOX, 1);
             BlockStateMeta meta = (BlockStateMeta) giftBox.getItemMeta();
-            if (meta != null) {
+            if (meta != null) { // 這行其實可以不用:)
                 meta.setDisplayName("新手禮包");
                 List<String> lore = new ArrayList<>();
                 lore.add("裡面有哪些東西呢(。ヘ°)?");
                 meta.setLore(lore);
                 meta.setUnbreakable(true);
-
-                NamespacedKey key = new NamespacedKey(plugin, "newcomer_gift");
-                meta.getPersistentDataContainer().set(key, PersistentDataType.STRING, "newcomer_gift");
+                Global.key = new NamespacedKey(plugin, "newcomer_gift");
+                //NamespacedKey key = new NamespacedKey(plugin, "newcomer_gift");
+                meta.getPersistentDataContainer().set(Global.key, PersistentDataType.STRING, "newcomer_gift");
 
                 org.bukkit.block.ShulkerBox shulkerBox = (org.bukkit.block.ShulkerBox) meta.getBlockState();
                 Inventory inventory = shulkerBox.getInventory();
